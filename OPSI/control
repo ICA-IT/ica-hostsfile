@@ -1,0 +1,28 @@
+[Package]
+version: 1
+depends: 
+
+[Product]
+type: localboot
+id: ica-hostsfile
+name: ica-hostsfile
+description: hosts file patch to fix Nortol Family safe search problem
+advice: 
+version: 1.1
+priority: 0
+licenseRequired: False
+productClasses: 
+setupScript: setup32.opsiscript
+uninstallScript: uninstall32.opsiscript
+updateScript: 
+alwaysScript: 
+onceScript: 
+customScript: 
+userLoginScript: 
+
+[Changelog]
+ica-hostsfile (1.1-1) stable; urgency=low
+
+Project created with opsi Package Builder 8.2.2
+
+ -- John Kuras <jkuras@islandchristianacademy.com>  Mon, 03 Sep 2018 11:57:33 +0000

@@ -1,0 +1,34 @@
+; Copyright (c) uib gmbh (www.uib.de)
+; This sourcecode is owned by uib gmbh
+; and published under the Terms of the General Public License.
+; credits: http://www.opsi.org/en/credits/
+
+Set $MsiId$ = '{XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}'
+Set $UninstallProgram$ = $InstallDir$ + "\uninstall.exe"
+
+Message "Uninstalling " + $ProductId$ + " ..."
+
+        ChangeDirectory "%SCRIPTPATH%"
+
+   Set $errcode$ = "0"
+
+        comment "Copy files"
+        DOSInAnIconSetRW
+        Files_uninstall /32Bit
+
+        comment "Clear DNS cache"
+        Winbatch_uninstall
+
+[DOSInAnIconSetRW]
+; Create migration preview file
+attrib -R "$InstallDir$\hosts"
+
+[Winbatch_uninstall]
+
+ "%System%\ipconfig.exe" /flushdns
+
+[Files_uninstall]
+ 
+copy -s "%ScriptPath%\files\*.*" "$InstallDir$"
+rename "$InstallDir$\hosts-def" "$InstallDir$\hosts"
+
